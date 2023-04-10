@@ -33,7 +33,7 @@ const HelloWorldIntentHandler = {
         const speakOutput = "Acá tienes los principales titulares de Cooperativa";
         return handlerInput.responseBuilder
             .speak(speakOutput)
-            .speak(titles)
+            .speak(theNews)
             //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
             .getResponse();
     }
