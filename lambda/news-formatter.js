@@ -5,7 +5,7 @@ const DATE_FORMAT_OPTIONS = { weekday: 'long', month: 'long', day: 'numeric' };
 const formatNewsForTTS = function (news) {
     return news
         .map(article => {
-            "El " + new Date(DATE_FORMAT_OPTIONS).toLocaleDateString('es-CL', options)
+            "El " + new Date(article.pubDate).toLocaleDateString('es-CL', options)
                 + TTS_PAUSE_HEADLINE
                 + article.title
                 + TTS_PAUSE_HEADLINE
