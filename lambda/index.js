@@ -4,13 +4,15 @@
  * session persistence, api calls, and more.
  * */
 const Alexa = require('ask-sdk-core');
+const NewsParser = require('./news-parser.js');
+const NewsFormatter = require('./news-formatter.js');
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const speakOutput = 'Welcome, you can say Hello or Help. Which would you like to try?';
+        const speakOutput = 'Bienvenido, puedes decir "resumen de noticias" o "Ayuda". ¿Cuál opción te gustaría probar?';
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -24,11 +26,14 @@ const HelloWorldIntentHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'HelloWorldIntent';
     },
-    handle(handlerInput) {
-        const speakOutput = 'Hello World!';
-
+    async handle(handlerInput) {
+        let news = await NewsParser.fetchNewsFromCooperativa();
+        let theNews = NewsFormatter.formatNewsForTTS(news);
+        
+        const speakOutput = "Acá tienes los principales titulares de Cooperativa";
         return handlerInput.responseBuilder
             .speak(speakOutput)
+            .speak(titles)
             //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
             .getResponse();
     }

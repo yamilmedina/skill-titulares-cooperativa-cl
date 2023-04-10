@@ -1,0 +1,36 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "noticias de chile",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": ["ayuda"]
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "HelloWorldIntent",
+          "slots": [],
+          "samples": [
+            "leer noticias de chile",
+            "cuentame el resumen de noticias",
+            "dame últimas noticias"
+          ]
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        }
+      ],
+      "types": []
+    }
+  },
+  "version": "1"
+}
