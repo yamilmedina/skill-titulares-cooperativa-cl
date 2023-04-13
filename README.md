@@ -3,7 +3,7 @@
 Experimental Alexa skill that reads latest news briefs from https://www.cooperativa.cl/.
 
 ```
-🗣️ "Alexa, noticias de Chile" ...
+🗣️ "Alexa, leer noticias de Chile" ...
 ```
 
 

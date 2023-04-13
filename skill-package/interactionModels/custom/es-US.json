@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "noticias de chile",
+      "invocationName": "leer noticias de chile",
       "intents": [
         {
           "name": "AMAZON.CancelIntent",
