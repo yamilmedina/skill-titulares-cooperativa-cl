@@ -11,12 +11,14 @@ const LaunchRequestHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
-    handle(handlerInput) {
-        const speakOutput = 'Bienvenido, puedes decir "resumen de noticias" o "Ayuda". ¿Cuál opción te gustaría probar?';
-
+    async handle(handlerInput) {
+        let news = await NewsParser.fetchNewsFromCooperativa();
+        let theNews = NewsFormatter.formatNewsForTTS(news);
+        
+        const speakOutput = "Acá tienes los principales titulares de Cooperativa" + theNews;
         return handlerInput.responseBuilder
             .speak(speakOutput)
-            .reprompt(speakOutput)
+            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
             .getResponse();
     }
 };
