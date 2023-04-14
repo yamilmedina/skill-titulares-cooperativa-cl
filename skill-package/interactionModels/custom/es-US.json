@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "leer noticias de chile",
+      "invocationName": "noticias de chile",
       "intents": [
         {
           "name": "AMAZON.CancelIntent",
@@ -9,7 +9,7 @@
         },
         {
           "name": "AMAZON.HelpIntent",
-          "samples": ["ayuda"]
+          "samples": []
         },
         {
           "name": "AMAZON.StopIntent",
@@ -19,9 +19,9 @@
           "name": "HelloWorldIntent",
           "slots": [],
           "samples": [
-            "leer noticias de chile",
-            "cuentame el resumen de noticias",
-            "dame últimas noticias"
+            "noticias de chile",
+            "el resumen de noticias",
+            "últimas noticias"
           ]
         },
         {
