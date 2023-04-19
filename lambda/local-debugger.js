@@ -13,10 +13,10 @@
 
 /* ## DEPRECATION NOTICE
 
-This script has been deprecated and is no longer supported. 
+This script has been deprecated and is no longer supported.
 Please use the [ASK Toolkit for VS Code]
-(https://marketplace.visualstudio.com/items?itemName=ask-toolkit.alexa-skills-kit-toolkit), 
-which provides a more end-to-end integration with Visual Studio Code. If you 
+(https://marketplace.visualstudio.com/items?itemName=ask-toolkit.alexa-skills-kit-toolkit),
+which provides a more end-to-end integration with Visual Studio Code. If you
 use another editor/IDE, please check out the [ASK SDK Local Debug package at npm]
 (https://www.npmjs.com/package/ask-sdk-local-debug).
 
@@ -48,7 +48,7 @@ const lambdaHandlerName = getLambdaHandlerName();
  */
 
 localDebugger.listen(portNumber, host, () => {
-    console.log(`Starting server on port: ${localDebugger.address().port}.`);
+  console.log(`Starting server on port: ${localDebugger.address().port}.`);
 });
 
 /**
@@ -61,16 +61,16 @@ localDebugger.listen(portNumber, host, () => {
  */
 
 localDebugger.on('connection', (socket) => {
-    console.log(`Connection from: ${socket.remoteAddress}:${socket.remotePort}`);
-    socket.on('data', (data) => {
-        const body = JSON.parse(data.toString().split(httpBodyDelimeter).pop());
-        console.log(`Request envelope: ${JSON.stringify(body)}`);
-        skillInvoker[lambdaHandlerName](body, null, (_invokeErr, response) => {
-            response = JSON.stringify(response);
-            console.log(`Response envelope: ${response}`);
-            socket.write(`HTTP/1.1 200 OK${httpHeaderDelimeter}Content-Type: application/json;charset=UTF-8${httpHeaderDelimeter}Content-Length: ${response.length}${httpBodyDelimeter}${response}`);
-        });
+  console.log(`Connection from: ${socket.remoteAddress}:${socket.remotePort}`);
+  socket.on('data', (data) => {
+    const body = JSON.parse(data.toString().split(httpBodyDelimeter).pop());
+    console.log(`Request envelope: ${JSON.stringify(body)}`);
+    skillInvoker[lambdaHandlerName](body, null, (_invokeErr, response) => {
+      response = JSON.stringify(response);
+      console.log(`Response envelope: ${response}`);
+      socket.write(`HTTP/1.1 200 OK${httpHeaderDelimeter}Content-Type: application/json;charset=UTF-8${httpHeaderDelimeter}Content-Length: ${response.length}${httpBodyDelimeter}${response}`);
     });
+  });
 });
 
 /**
@@ -79,18 +79,18 @@ localDebugger.on('connection', (socket) => {
  */
 
 function getAndValidatePortNumber() {
-    const portNumberArgument = Number(getArgument('portNumber', defaultPort));
-    if (!Number.isInteger(portNumberArgument)) {
-        throw new Error(`Port number has to be an integer - ${portNumberArgument}.`);
-    }
-    if (portNumberArgument < 0 || portNumberArgument > 65535) {
-        throw new Error(`Port out of legal range: ${portNumberArgument}. The port number should be in the range [0, 65535]`);
-    }
-    if (portNumberArgument === 0) {
-        console.log('The TCP server will listen on a port that is free.'
-        + 'Check logs to find out what port number is being used');
-    }
-    return portNumberArgument;
+  const portNumberArgument = Number(getArgument('portNumber', defaultPort));
+  if (!Number.isInteger(portNumberArgument)) {
+    throw new Error(`Port number has to be an integer - ${portNumberArgument}.`);
+  }
+  if (portNumberArgument < 0 || portNumberArgument > 65535) {
+    throw new Error(`Port out of legal range: ${portNumberArgument}. The port number should be in the range [0, 65535]`);
+  }
+  if (portNumberArgument === 0) {
+    console.log('The TCP server will listen on a port that is free.'
+      + 'Check logs to find out what port number is being used');
+  }
+  return portNumberArgument;
 }
 
 /**
@@ -99,7 +99,7 @@ function getAndValidatePortNumber() {
  */
 
 function getLambdaHandlerName() {
-    return getArgument('lambdaHandler', defaultHandlerName);
+  return getArgument('lambdaHandler', defaultHandlerName);
 }
 
 /**
@@ -109,11 +109,11 @@ function getLambdaHandlerName() {
 
 // eslint-disable-next-line consistent-return
 function getAndValidateSkillInvokerFile() {
-    const fileNameArgument = getArgument('skillEntryFile');
-    if (!fs.existsSync(fileNameArgument)) {
-        throw new Error(`File not found: ${fileNameArgument}`);
-    }
-    return fileNameArgument;
+  const fileNameArgument = getArgument('skillEntryFile');
+  if (!fs.existsSync(fileNameArgument)) {
+    throw new Error(`File not found: ${fileNameArgument}`);
+  }
+  return fileNameArgument;
 }
 
 /**
@@ -123,13 +123,13 @@ function getAndValidateSkillInvokerFile() {
  */
 
 function getArgument(argumentName, defaultValue) {
-    const index = process.argv.indexOf(`--${argumentName}`);
-    if (index === -1 || typeof process.argv[index + 1] === 'undefined') {
-        if (defaultValue === undefined) {
-            throw new Error(`Required argument - ${argumentName} not provided.`);
-        } else {
-            return defaultValue;
-        }
+  const index = process.argv.indexOf(`--${argumentName}`);
+  if (index === -1 || typeof process.argv[index + 1] === 'undefined') {
+    if (defaultValue === undefined) {
+      throw new Error(`Required argument - ${argumentName} not provided.`);
+    } else {
+      return defaultValue;
     }
-    return process.argv[index + 1];
+  }
+  return process.argv[index + 1];
 }
