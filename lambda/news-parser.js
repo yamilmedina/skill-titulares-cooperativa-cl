@@ -1,5 +1,5 @@
-const { XMLParser } = import('fast-xml-parser');
-const axios = import('axios');
+const { XMLParser } = require('fast-xml-parser');
+const axios = require('axios');
 
 const parser = new XMLParser();
 // eslint-disable-next-line func-names
@@ -22,4 +22,4 @@ const fetchNewsFromCooperativa = function () {
   });
 };
 
-export default { fetchNewsFromCooperativa };
+module.exports = { fetchNewsFromCooperativa };

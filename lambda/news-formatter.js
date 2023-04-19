@@ -23,4 +23,4 @@ const formatNewsForTTS = function (news) {
   }, '');
 };
 
-export default { formatNewsForTTS };
+module.exports = { formatNewsForTTS };

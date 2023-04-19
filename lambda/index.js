@@ -4,8 +4,8 @@
  * session persistence, api calls, and more.
  * */
 const Alexa = require('ask-sdk-core');
-const NewsParser = require('./news-parser').default;
-const NewsFormatter = require('./news-formatter').default;
+const NewsParser = require('./news-parser.js');
+const NewsFormatter = require('./news-formatter.js');
 
 const LaunchRequestHandler = {
   canHandle(handlerInput) {
