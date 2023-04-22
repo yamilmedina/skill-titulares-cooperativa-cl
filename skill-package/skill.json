@@ -28,6 +28,9 @@
       "locales": {
         "es-US": {
           "name": "Titulares de noticias Cooperativa.cl"
+        },
+        "en-US": {
+          "name": "Titulares de noticias Cooperativa.cl"
         }
       }
     }
