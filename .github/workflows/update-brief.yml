@@ -28,3 +28,5 @@ jobs:
           git add flash-briefing/package-lock.json dist/*
           git diff-index --quiet HEAD || git commit -m "chore: updating news"
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
