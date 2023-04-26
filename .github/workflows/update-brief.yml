@@ -13,14 +13,14 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '16.x'
-      - name: Change WORK dir
-        run: cd flash-briefing
       - name: Install dependencies
-        run: npm install
+        run: |
+          cd flash-briefing
+          npm install
       - name: Update brief
         run: |
+          cd flash-briefing
           node brief-parser.js > ../dist/baked-news.json
-          cd ..
       - name: Update json responses
         run: |
           git add flash-briefing/package-lock.json dist/*
