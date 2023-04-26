@@ -21,8 +21,10 @@ jobs:
         run: |
           cd flash-briefing
           node brief-parser.js > ../dist/baked-news.json
-      - name: Update json responses
+      - name: Update json
         run: |
+          git config --global user.name 'Kent Brockman'
+          git config --global user.email 'actions-user@users.noreply.github.com'
           git add flash-briefing/package-lock.json dist/*
           git diff-index --quiet HEAD || git commit -m "chore: updating news"
           git push
