@@ -1,8 +1,7 @@
 name: refresh news brief
 on:
   schedule:
-    #- cron:  '0 */4 * * *'
-    - cron:  '*/5 * * * *'
+    - cron:  '0 */4 * * *'
   workflow_dispatch:
 
 jobs:
@@ -14,13 +13,14 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '16.x'
+      - name: Change WORK dir
+        run: cd flash-briefing
       - name: Install dependencies
-        run: |
-          cd flash-briefing
-          npm install
+        run: npm install
       - name: Update brief
         run: |
           node brief-parser.js > ../dist/baked-news.json
+          cd ..
       - name: Update json responses
         run: |
           git add flash-briefing/package-lock.json dist/*
