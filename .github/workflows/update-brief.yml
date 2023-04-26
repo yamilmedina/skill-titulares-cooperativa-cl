@@ -1,0 +1,27 @@
+name: fetch reviews
+on:
+  schedule:
+    #- cron:  '0 */4 * * *'
+    - cron:  '*/5 * * * *'
+  workflow_dispatch:
+
+jobs:
+  update-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '16.x'
+      - name: Install dependencies
+        run: npm install
+      - name: Update brief
+        run: |
+          cd flash-briefing
+          node brief-parser.js > ../dist/baked-news.json
+      - name: Update json responses
+        run: |
+          git add flash-briefing/package-lock.json dist/*
+          git diff-index --quiet HEAD || git commit -m "chore: updating news"
+          git push
