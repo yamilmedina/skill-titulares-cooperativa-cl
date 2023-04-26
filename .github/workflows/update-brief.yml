@@ -1,4 +1,4 @@
-name: fetch reviews
+name: refresh news brief
 on:
   schedule:
     #- cron:  '0 */4 * * *'
