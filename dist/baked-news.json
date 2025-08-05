@@ -1,4 +1,4 @@
-AxiosError: unable to get local issuer certificate
+AxiosError: unable to verify the first certificate
     at Function.AxiosError.from (/home/runner/work/skill-titulares-cooperativa-cl/skill-titulares-cooperativa-cl/flash-briefing/node_modules/axios/lib/core/AxiosError.js:89:14)
     at RedirectableRequest.handleRequestError (/home/runner/work/skill-titulares-cooperativa-cl/skill-titulares-cooperativa-cl/flash-briefing/node_modules/axios/lib/adapters/http.js:577:25)
     at RedirectableRequest.emit (node:events:513:28)
@@ -9,7 +9,7 @@ AxiosError: unable to get local issuer certificate
     at emitErrorNT (node:internal/streams/destroy:157:8)
     at emitErrorCloseNT (node:internal/streams/destroy:122:3)
     at processTicksAndRejections (node:internal/process/task_queues:83:21) {
-  code: 'UNABLE_TO_GET_ISSUER_CERT_LOCALLY',
+  code: 'UNABLE_TO_VERIFY_LEAF_SIGNATURE',
   config: {
     transitional: {
       silentJSONParsing: true,
@@ -165,11 +165,11 @@ AxiosError: unable to get local issuer certificate
     _currentUrl: 'https://www.cooperativa.cl/noticias/site/tax/port/all/rss____1.xml',
     [Symbol(kCapture)]: false
   },
-  cause: Error: unable to get local issuer certificate
+  cause: Error: unable to verify the first certificate
       at TLSSocket.onConnectSecure (node:_tls_wrap:1539:34)
       at TLSSocket.emit (node:events:513:28)
       at TLSSocket._finishInit (node:_tls_wrap:953:8)
       at TLSWrap.ssl.onhandshakedone (node:_tls_wrap:734:12) {
-    code: 'UNABLE_TO_GET_ISSUER_CERT_LOCALLY'
+    code: 'UNABLE_TO_VERIFY_LEAF_SIGNATURE'
   }
 }
